@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Parcel.Models
+namespace Parcels.Models
 {
   public class Parcel
   {
@@ -17,16 +17,22 @@ namespace Parcel.Models
       Width  = width;
       Length = length;
       Weight = weight;
+      _instances.Add(this);
     }
 
     public int Volume(){
       return Length*Width*Height;
     }
 
-    public Float CostToShip(){
-      float costPerMile = .50;
-      float costToship = Weight*costPerMile*this.Volume();
+    public double CostToShip(){
+      double costPerMile = .50;
+      double costToShip = Weight*costPerMile*this.Volume();
       return costToShip;
+    }
+
+    public static List<Parcel> GetAll()
+    {
+      return _instances;
     }
   }
 }
